@@ -4,7 +4,7 @@ const games: Game[] = [
   {
     id: 'settlers-in-the-can',
     name: 'Settlers In The Can',
-    image: '/assets/can.png',
+    image: '/assets/beans.png',
     description:
       'Help your bug family claim the best real estate in a spilled can of beans.',
     price: 199,
