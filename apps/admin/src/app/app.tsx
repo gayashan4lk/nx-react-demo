@@ -16,14 +16,21 @@ export function App() {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
-    const data = getAllGames();
-    if (data) {
-      setGames(data);
-    } else {
-      setError(true);
-    }
-    setLoading(false);
+    (async () => {
+      setLoading(true);
+      try {
+        const data = await getAllGames();
+        if (data) {
+          setGames(data);
+        } else {
+          setError(true);
+        }
+      } catch (e) {
+        setError(true);
+        console.error(e);
+      }
+      setLoading(false);
+    })();
   }, []);
 
   if (loading) return <div>Loading...</div>;

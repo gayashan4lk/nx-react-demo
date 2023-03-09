@@ -29,5 +29,12 @@ const games: Game[] = [
   },
 ];
 
-export const getAllGames = () => games;
+export const getAllGames = () => {
+  const promise = new Promise<Game[]>((resolve, reject) =>
+    setTimeout(() => {
+      resolve(games);
+    }, 1200)
+  );
+  return promise;
+};
 export const getGame = (id: string) => games.find((game) => game.id === id);
