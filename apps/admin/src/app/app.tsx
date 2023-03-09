@@ -15,20 +15,24 @@ export function App() {
   const [loading, setLoading] = useState<boolean>();
   const [error, setError] = useState<boolean>(false);
 
+  async function fetchGames() {
+    try {
+      const data = await getAllGames();
+      if (data) {
+        setGames(data);
+      } else {
+        setError(true);
+      }
+    } catch (e) {
+      setError(true);
+      console.error(e);
+    }
+  }
+
   useEffect(() => {
     (async () => {
       setLoading(true);
-      try {
-        const data = await getAllGames();
-        if (data) {
-          setGames(data);
-        } else {
-          setError(true);
-        }
-      } catch (e) {
-        setError(true);
-        console.error(e);
-      }
+      await fetchGames();
       setLoading(false);
     })();
   }, []);
