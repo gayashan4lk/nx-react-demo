@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Route, Routes, Link } from 'react-router-dom';
-
 import { useState, useEffect } from 'react';
 import { getAllGames } from '../fake-api';
 import {
