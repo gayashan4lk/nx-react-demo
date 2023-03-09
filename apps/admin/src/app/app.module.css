@@ -1,1 +1,22 @@
-/* Your styles goes here. */
+.gamesLayout {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.gameCard {
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.gameRating {
+  padding-top: 10px;
+}
+.gameDetails {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.gameCardMedia {
+  height: 140px;
+}

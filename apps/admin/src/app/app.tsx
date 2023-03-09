@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
 import { Route, Routes, Link } from 'react-router-dom';
+
 import { getAllGames } from '../fake-api';
 import {
   Card,
@@ -9,16 +9,17 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import styles from './app.module.css';
 
 export function App() {
   return (
     <div className="container">
-      <div className="games-layout">
+      <div className={styles.gamesLayout}>
         {getAllGames().map((game) => (
-          <Card key={game.id} className="game-card">
+          <Card key={game.id} className={styles.gameCard}>
             <CardActionArea>
               <CardMedia
-                className="game-card-media"
+                className={styles.gameCardMedia}
                 image={game.image}
                 title={game.name}
               />
@@ -33,7 +34,7 @@ export function App() {
                   variant="body2"
                   component="p"
                   color="textSecondary"
-                  className="game-rating"
+                  className={styles.gameRating}
                 >
                   <strong>Rating:</strong>
                   {game.rating}
