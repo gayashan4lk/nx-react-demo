@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-react-demo/my-shared-ui": ["libs/my-shared-ui/src/index.ts"]
+      "@nx-react-demo/my-shared-ui": ["libs/my-shared-ui/src/index.ts"],
+      "@nx-react-demo/util-formatters": ["libs/util-formatters/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
