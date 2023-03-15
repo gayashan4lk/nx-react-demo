@@ -9,6 +9,9 @@ import {
 } from '@mui/material';
 import styles from './app.module.css';
 import { Game } from '../interfaces/Game';
+import { Header } from '@nx-react-demo/my-shared-ui';
+import { TestComponent } from '@nx-react-demo/my-shared-ui';
+import { useCustomHook } from '@nx-react-demo/my-shared-ui';
 
 export function App() {
   const [games, setGames] = useState<Game[]>();
@@ -77,6 +80,10 @@ export function App() {
               </CardActionArea>
             </Card>
           ))}
+      </div>
+      <div>
+        <Header />
+        <TestComponent />
       </div>
     </div>
   );
