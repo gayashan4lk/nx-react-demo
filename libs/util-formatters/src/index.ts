@@ -1,1 +1,1 @@
-export * from './lib/util-formatters';
+export * from './lib/util-formatter/util-formatter';
