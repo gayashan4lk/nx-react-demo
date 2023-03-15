@@ -33,7 +33,7 @@ export const getAllGames = () => {
   const promise = new Promise<Game[]>((resolve, reject) =>
     setTimeout(() => {
       resolve(games);
-    }, 1200)
+    }, 5000)
   );
   return promise;
 };
