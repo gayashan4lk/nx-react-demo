@@ -1,54 +1,84 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useState, useEffect } from 'react';
+import { getAllGames } from '../fake-api';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
 import styles from './app.module.css';
-
-import NxWelcome from './nx-welcome';
-
-import { Route, Routes, Link } from 'react-router-dom';
+import { Game } from '../interfaces/Game';
 
 export function App() {
+  const [games, setGames] = useState<Game[]>();
+  const [loading, setLoading] = useState<boolean>();
+  const [error, setError] = useState<boolean>(false);
+
+  async function fetchGames() {
+    try {
+      const data = await getAllGames();
+      if (data) {
+        setGames(data);
+      } else {
+        setError(true);
+      }
+    } catch (e) {
+      setError(true);
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      await fetchGames();
+      setLoading(false);
+    })();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
+  if (error) return <div>Error occured!</div>;
+
   return (
-    <>
-      <NxWelcome title="admin" />
-
-      <div />
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
+    <div className="container">
+      <div className={styles.gamesLayout}>
+        {games &&
+          games.map((game) => (
+            <Card key={game.id} className={styles.gameCard}>
+              <CardActionArea>
+                <CardMedia
+                  className={styles.gameCardMedia}
+                  image={game.image}
+                  title={game.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {game.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    component="p"
+                    color="textSecondary"
+                  >
+                    {game.description}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    component="p"
+                    color="textSecondary"
+                    className={styles.gameRating}
+                  >
+                    <strong>Rating:</strong>
+                    {game.rating}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))}
       </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
-      </Routes>
-      {/* END: routes */}
-    </>
+    </div>
   );
 }
 
