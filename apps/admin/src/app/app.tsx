@@ -12,6 +12,7 @@ import { Game } from '../interfaces/Game';
 import { Header } from '@nx-react-demo/my-shared-ui';
 import { TestComponent } from '@nx-react-demo/my-shared-ui';
 import { useCustomHook } from '@nx-react-demo/my-shared-ui';
+import { utilFormatter } from '@nx-react-demo/util-formatters';
 
 export function App() {
   const [games, setGames] = useState<Game[]>();
@@ -85,6 +86,7 @@ export function App() {
         <Header />
         <TestComponent />
       </div>
+      <div>{utilFormatter()}</div>
     </div>
   );
 }
